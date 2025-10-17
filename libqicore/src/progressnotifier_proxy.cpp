@@ -89,3 +89,4 @@ void _qiregisterProgressNotifierProxy()
   ::qi::registerProxyInterface<ProgressNotifierProxy, ProgressNotifier>();
 }
 }
+

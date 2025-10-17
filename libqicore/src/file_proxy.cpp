@@ -80,3 +80,4 @@ void _qiregisterFileProxy()
   ::qi::registerProxyInterface<FileProxy, File>();
 }
 }
+

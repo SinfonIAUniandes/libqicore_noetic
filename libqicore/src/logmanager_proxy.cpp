@@ -7,7 +7,6 @@
 #include <qicore/logmessage.hpp>
 #include <qicore/logmanager.hpp>
 #include <qicore/loglistener.hpp>
-
 bool qi::detail::ForceProxyInclusion<qi::LogManager>::dummyCall()
 {
   return true;
@@ -51,3 +50,4 @@ public:
 
 QI_REGISTER_PROXY_INTERFACE(LogManagerProxy, LogManager);
 } // !qi
+

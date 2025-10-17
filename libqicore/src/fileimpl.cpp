@@ -9,7 +9,6 @@
 #include <algorithm>
 #include <vector>
 
-#include <qi/macro.hpp>
 #include <qi/anymodule.hpp>
 
 namespace qi
@@ -157,13 +156,10 @@ void _qiregisterFile()
   QI_OBJECT_BUILDER_ADVERTISE(builder, File, operationProgress);
 
   // Deprecated members:
-QI_WARNING_PUSH()
-QI_WARNING_DISABLE(4996, deprecated-declarations)
   QI_OBJECT_BUILDER_ADVERTISE_OVERLOAD(builder, File, _read, Buffer, (std::streamoff, std::streamsize));
   QI_OBJECT_BUILDER_ADVERTISE_OVERLOAD(builder, File, _read, Buffer, (std::streamsize));
   QI_OBJECT_BUILDER_ADVERTISE(builder, File, _seek);
   QI_OBJECT_BUILDER_ADVERTISE(builder, File, _close);
-QI_WARNING_POP()
 
   builder.registerType();
 
@@ -193,3 +189,4 @@ void registerFileCreation(qi::ModuleBuilder& mb)
   mb.advertiseMethod("openLocalFile", &openLocalFile);
 }
 }
+

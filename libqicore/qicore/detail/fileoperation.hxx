@@ -6,8 +6,6 @@
 #include <memory>
 #include <boost/filesystem/fstream.hpp>
 #include <boost/filesystem/operations.hpp>
-#include <qi/macro.hpp>
-
 namespace qi
 {
   /** Base type for file operation exposing information about its progress state.
@@ -129,6 +127,7 @@ namespace qi
       Task(FilePtr file)
         : sourceFile{ std::move(file) }
         , fileSize{ sourceFile->size() }
+        , promise{ PromiseNoop<void> }
         , localNotifier{ createProgressNotifier(promise.future()) }
         , remoteNotifier{ sourceFile->operationProgress() }
         , isRemoteDeprecated(sourceFile.metaObject().findMethod("read").empty())
@@ -136,9 +135,6 @@ namespace qi
       }
 
       virtual ~Task() = default;
-
-QI_WARNING_PUSH()
-QI_WARNING_DISABLE(4996, deprecated-declarations)
 
       qi::Future<void> run()
       {
@@ -176,8 +172,6 @@ QI_WARNING_DISABLE(4996, deprecated-declarations)
         localNotifier->notifyProgressed(newProgress);
         isRemoteDeprecated ? remoteNotifier->_notifyProgressed(newProgress) : remoteNotifier->notifyProgressed(newProgress);
       }
-
-QI_WARNING_POP()
 
       virtual void start() = 0;
 

@@ -9,8 +9,8 @@ set(PUBLIC_HEADERS
   qicore/logmessage.hpp
   qicore/logprovider.hpp
   qicore/file.hpp
-  qicore/detail/fileoperation.hxx)
-
+  qicore/detail/fileoperation.hxx
+)
 install(FILES ${PUBLIC_HEADERS} DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}/qicore)
 
 add_library(qicore
@@ -25,8 +25,10 @@ add_library(qicore
   src/fileimpl.cpp
   src/fileoperation.cpp
   src/progressnotifier.cpp
-  src/progressnotifier_proxy.cpp)
+  src/progressnotifier_proxy.cpp
+)
 
 target_link_libraries(qicore ${Boost_LIBRARIES} ${catkin_LIBRARIES})
 install(TARGETS qicore DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
+
 #add_subdirectory("tests")
